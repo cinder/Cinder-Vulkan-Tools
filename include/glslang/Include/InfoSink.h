@@ -36,7 +36,7 @@
 #define _INFOSINK_INCLUDED_
 
 #include "../Include/Common.h"
-#include <math.h>
+#include <cmath>
 
 namespace glslang {
 
@@ -74,7 +74,6 @@ public:
     TInfoSinkBase& operator<<(const char* s)           { append(s); return *this; }
     TInfoSinkBase& operator<<(int n)                   { append(String(n)); return *this; }
     TInfoSinkBase& operator<<(unsigned int n)          { append(String(n)); return *this; }
-    TInfoSinkBase& operator<<(long unsigned int n)     { append(String(n)); return *this; }
     TInfoSinkBase& operator<<(float n)                 { const int size = 40; char buf[size]; 
                                                          snprintf(buf, size, (fabs(n) > 1e-8 && fabs(n) < 1e8) || n == 0.0f ? "%f" : "%g", n);
                                                          append(buf); 
@@ -92,7 +91,7 @@ public:
         case EPrefixInternalError: append("INTERNAL ERROR: "); break;
         case EPrefixUnimplemented: append("UNIMPLEMENTED: ");  break;
         case EPrefixNote:          append("NOTE: ");           break;
-        default:                   append("UNKOWN ERROR: ");   break;
+        default:                   append("UNKNOWN ERROR: ");   break;
         }
     }
     void location(const TSourceLoc& loc) {
