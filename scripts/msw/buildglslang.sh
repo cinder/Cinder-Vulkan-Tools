@@ -142,6 +142,7 @@ function build_libs {
 		echo "Copying headers"
 		copy_headers $VulkanSDK/glslang glslang $ScriptDir/../../include
 		copy_file $VulkanSDK/glslang/SPIRV $ScriptDir/../../include/SPIRV GlslangToSpv.h
+		copy_file $VulkanSDK/glslang/SPIRV $ScriptDir/../../include/SPIRV Logger.h
 		copy_file $VulkanSDK/Include/vulkan $ScriptDir/../../include/vulkan vk_platform.h
 		copy_file $VulkanSDK/Include/vulkan $ScriptDir/../../include/vulkan vulkan.h
 	fi
