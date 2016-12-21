@@ -105,18 +105,18 @@ function build_libs {
 
 	if [ ! -z "$Generator" ] ; then
 		BuildDir=$VulkanSDK/glslang/build-$Target
-		#if [ -d $BuildDir ]; then 
-		#	rm -rf $BuildDir
-		#	echo "Removed existing $BuildDir"
-		#fi
-		#mkdir -p $BuildDir
-		#cd $BuildDir
-		#echo -e "Generating for $Generator"
-		#cmake -G "$Generator" ..
+		if [ -d $BuildDir ]; then 
+			rm -rf $BuildDir
+			echo "Removed existing $BuildDir"
+		fi
+		mkdir -p $BuildDir
+		cd $BuildDir
+		echo -e "Generating for $Generator"
+		cmake -G "$Generator" ..
 
 		NPROC=`nproc`
-		#"$MSBuildExe" /maxcpucount:$NPROC /property:Configuration=Debug "$BuildDir/glslang.sln"
-		#"$MSBuildExe" /maxcpucount:$NPROC /property:Configuration=Release "$BuildDir/glslang.sln"
+		"$MSBuildExe" /maxcpucount:$NPROC /property:Configuration=Debug "$BuildDir/glslang.sln"
+		"$MSBuildExe" /maxcpucount:$NPROC /property:Configuration=Release "$BuildDir/glslang.sln"
 		
 		copy_libs $BuildDir $ScriptDir/../../lib/msw/$PlatformTarget/$Toolset Debug 
 		copy_libs $BuildDir $ScriptDir/../../lib/msw/$PlatformTarget/$Toolset Release
